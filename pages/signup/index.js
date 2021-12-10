@@ -32,5 +32,6 @@ loginForm.addEventListener("submit", (e) => {
         })
         .catch(error => {
             errorMsg.style.display = "block"
+            console.log(error)
         });
 })
