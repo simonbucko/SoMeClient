@@ -1,4 +1,4 @@
-const SERVER_URL = "http://localhost:8080"
+import { SERVER_URL } from "../../shared/js/constants.js"
 const loginForm = document.querySelector("#loginForm")
 const errorMsg = document.querySelector("#errorMsg")
 
