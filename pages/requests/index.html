@@ -8,16 +8,21 @@
     <link rel="stylesheet" href="./index.css">
 </head>
 <body>
-    <h2>Dashboard</h2>
+    <h2>Sent Friendship Requests</h2>
     <h3 id="profileEmail"></h3>
-    <ul>
-        <li><a href="/pages/friendship">Send friend request</a></li>
-        <li><a href="/pages/friends">See all friends</a></li>
-        <li><a href="/pages/requests">See all requested friend requests</a></li>
-        <li><a href="">Respond on friend requests</a></li>
-        <li><a href="/">logout</a></li>
-    </ul>
-    <script src="./index.js"></script>
+    <table>
+        <thead>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Host</th>
+            <th>Status</th>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script type="module" src="/shared/js/constants.js"></script>
+    <script type="module" src="./index.js"></script>
     <script src="/shared/js/nameHeader.js"></script>
 </body>
 </html>
