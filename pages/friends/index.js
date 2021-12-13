@@ -1,26 +1,26 @@
 import { SERVER_URL } from "../../shared/js/constants.js"
+let friendsList = [];
 
 window.addEventListener("load", () => {
     fetchAndRenderFriendsList();
 })
 
 const fetchAndRenderFriendsList = async () => {
-    // const response = await fetch(`${SERVER_URL}/api/movies?theaterId=1`);
-    // const data = await response.json()
-    // console.log(data)
-    console.log(SERVER_URL)
+    const { id } = JSON.parse(sessionStorage.getItem("user"));
+    const response = await fetch(`${SERVER_URL}/api/user?userId=${id}`);
+    const data = await response.json();
+    friendsList = data.friends;
+    generateHtml(document.querySelector("tbody"), friendsList);
 }
 
-const generateHtml = (parentElement, movies) => {
+const generateHtml = (parentElement, friendsList) => {
     let HTML = ``;
-    movies.forEach((movie, i) => {
+    friendsList.forEach((friend, i) => {
         HTML += `
-        <tr data-movieindex=${i}>
-            <th data-movieindex=${i}>${movie.id}</th>
-            <th data-movieindex=${i}>${movie.title}</th>
-            <th data-movieindex=${i}>${movie.rating}</th>
-            <th data-movieindex=${i}>${movie.minAge}</th>
-            <th colspan="2" data-movieindex=${i}>${movie.category}</th>
+        <tr data-rowindex=${i}>
+            <th data-rowindex=${i}>${i}</th>
+            <th data-rowindex=${i}>${friend.name}</th>
+            <th data-rowindex=${i}>${friend.host}</th>
         </tr>
         `
     });
