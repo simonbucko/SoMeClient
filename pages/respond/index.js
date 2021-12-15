@@ -1,4 +1,4 @@
-import { SERVER_URL, ACCEPT, DENY } from "../../shared/js/constants.js"
+import { SERVER_URL, ACCEPT, DENY, SRC_HOST } from "../../shared/js/constants.js"
 let requestsReceived = [];
 
 window.addEventListener("load", () => {
@@ -47,7 +47,34 @@ const attachClickListeners = () => {
 }
 
 const handleAccept = async (requestIndex) => {
-
+    const request = requestsReceived[requestIndex];
+    console.log(request)
+    const { email } = JSON.parse(sessionStorage.getItem("user"));
+    const requestData = {
+        method: ACCEPT,
+        sender: email,
+        srcHost: SRC_HOST,
+        recipient: request.email,
+        rcpHost: request.host,
+        version: 1
+    }
+    fetch(`${SERVER_URL}/api/response`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
+    })
+        .then(response => response.json()
+        )
+        .then(data => {
+            console.log(data)
+            fetchAndRenderFriendsList();
+            alert(data.phrase)
+        })
+        .catch(error => {
+            console.log(error)
+        });
 }
 
 const handleDeny = async (requestIndex) => {

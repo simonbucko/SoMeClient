@@ -19,7 +19,7 @@ const generateHtml = (parentElement, friendsList) => {
         HTML += `
         <tr data-rowindex=${i}>
             <th data-rowindex=${i}>${i}</th>
-            <th data-rowindex=${i}>${friend.name}</th>
+            <th data-rowindex=${i}>${friend.email}</th>
             <th data-rowindex=${i}>${friend.host}</th>
         </tr>
         `

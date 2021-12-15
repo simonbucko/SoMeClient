@@ -33,5 +33,8 @@ requestForm.addEventListener("submit", (e) => {
         })
         .catch(error => {
             console.log(error)
+            statusMsg.style.display = "block"
+            statusMsg.style.color = "red"
+            statusMsg.innerText = "Opps, some error occured"
         });
 })
