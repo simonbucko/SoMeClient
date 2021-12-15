@@ -9,7 +9,6 @@ const fetchAndRenderFriendsList = async () => {
     const { id } = JSON.parse(sessionStorage.getItem("user"));
     const response = await fetch(`${SERVER_URL}/api/user?userId=${id}`);
     const data = await response.json();
-    console.log(data)
     requestsReceived = data.requestsReceived;
     generateHtml(document.querySelector("tbody"), requestsReceived);
     attachClickListeners();
@@ -48,7 +47,6 @@ const attachClickListeners = () => {
 
 const handleAccept = async (requestIndex) => {
     const request = requestsReceived[requestIndex];
-    console.log(request)
     const { email } = JSON.parse(sessionStorage.getItem("user"));
     const requestData = {
         method: ACCEPT,
@@ -68,7 +66,6 @@ const handleAccept = async (requestIndex) => {
         .then(response => response.json()
         )
         .then(data => {
-            console.log(data)
             fetchAndRenderFriendsList();
             alert(data.phrase)
         })

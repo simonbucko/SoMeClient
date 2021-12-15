@@ -26,7 +26,6 @@ loginForm.addEventListener("submit", (e) => {
             }
             else {
                 sessionStorage.setItem("user", JSON.stringify(data))
-                console.log(data)
                 window.location.replace(`${window.location.origin}/pages/dashboard`);
             }
         })
