@@ -26,6 +26,9 @@ requestForm.addEventListener("submit", (e) => {
         .then(data => {
             console.log(data)
             statusMsg.style.display = "block"
+            //case that friendship has been already sent 
+            if (data.status === 201) statusMsg.style.color = "orange"
+            statusMsg.innerText = data.phrase
             requestForm.reset()
         })
         .catch(error => {

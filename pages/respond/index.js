@@ -1,4 +1,4 @@
-import { SERVER_URL } from "../../shared/js/constants.js"
+import { SERVER_URL, ACCEPT, DENY } from "../../shared/js/constants.js"
 let requestsReceived = [];
 
 window.addEventListener("load", () => {
@@ -12,6 +12,7 @@ const fetchAndRenderFriendsList = async () => {
     console.log(data)
     requestsReceived = data.requestsReceived;
     generateHtml(document.querySelector("tbody"), requestsReceived);
+    attachClickListeners();
 }
 
 const generateHtml = (parentElement, requestsReceived) => {
@@ -20,12 +21,35 @@ const generateHtml = (parentElement, requestsReceived) => {
         HTML += `
         <tr data-rowindex=${i}>
             <th data-rowindex=${i}>${i}</th>
-            <th data-rowindex=${i}>${request.name}</th>
+            <th data-rowindex=${i}>${request.email}</th>
             <th data-rowindex=${i}>${request.host}</th>
-            <th data-rowindex=${i}>Accept</th>
-            <th data-rowindex=${i}>Deny</th>
+            <th><button class="acceptButton" data-rowindex=${i}>Accept</button></th>
+            <th><button class="denyButton" data-rowindex=${i}>Deny</button></th>
         </tr>
         `
     });
     parentElement.innerHTML = HTML;
+}
+
+const attachClickListeners = () => {
+    const acceptButtons = document.querySelectorAll("button.acceptButton");
+    const denyButtons = document.querySelectorAll("button.denyButton");
+    Array.from(acceptButtons).forEach(button => {
+        button.addEventListener("click", (e) => {
+            handleAccept(e.target.getAttribute('data-rowindex'))
+        })
+    })
+    Array.from(denyButtons).forEach(button => {
+        button.addEventListener("click", (e) => {
+            handleDeny(e.target.getAttribute('data-rowindex'))
+        })
+    })
+}
+
+const handleAccept = async (requestIndex) => {
+
+}
+
+const handleDeny = async (requestIndex) => {
+
 }
