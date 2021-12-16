@@ -1,5 +1,5 @@
-export const SERVER_URL = "http://localhost:8080"
-export const SRC_HOST = "anotherSocialMedia"
+export const SERVER_URL = "https://another-social-media.herokuapp.com"
+export const SRC_HOST = "https://another-social-media.herokuapp.com"
 export const ADD = "Add"
 export const ACCEPT = "Accept"
 export const DENY = "Deny"
